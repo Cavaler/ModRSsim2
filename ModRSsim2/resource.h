@@ -284,8 +284,6 @@
 #define IDC_TRAININGSIM                 1201
 #define IDC_STATIC4                     1202
 #define IDC_OUTPUT_HTMLNAME             1202
-#define IDC_SCROLLUP                    1233
-#define IDC_SCROLLDN                    1234
 #define IDC_CHECKTYPE                   1204
 #define IDC_CREDITSTATIC                1205
 #define IDC_DRAG                        1206
@@ -321,6 +319,9 @@
 #define IDC_LONGTIMEOUTS                1229
 #define IDC_VERSION20                   1231
 #define IDC_VERSION                     1231
+#define IDC_RTUFRAME                    1232
+#define IDC_SCROLLUP                    1233
+#define IDC_SCROLLDN                    1234
 #define IDC_SHOWCOMMSTIME               1300
 #define IDC_SHOWCOMMSDECODE             1301
 #define IDB_ALPHABLEND60                32779
@@ -362,9 +363,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        197
+#define _APS_NEXT_RESOURCE_VALUE        198
 #define _APS_NEXT_COMMAND_VALUE         32805
-#define _APS_NEXT_CONTROL_VALUE         1232
+#define _APS_NEXT_CONTROL_VALUE         1233
 #define _APS_NEXT_SYMED_VALUE           117
 #endif
 #endif

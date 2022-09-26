@@ -1397,6 +1397,7 @@ DWORD animationType;
    m_numServers = 10;
    m_linger = FALSE;
    m_SockTO = 100;      // Added 2015-01-30 by DL for Ethernet Socket Timeout default
+   m_rtuFrame = FALSE;
 
    m_animationON = FALSE;
    m_plantAnimation = FALSE;
@@ -1472,6 +1473,7 @@ DWORD animationType;
    key.QueryValue("Protocol",          &m_selectedProtocol);
    key.QueryValue("EthernetServers",   &m_numServers);
    key.QueryValue("LingerClose",       &m_linger);
+   key.QueryValue("RtuFrame",          &m_rtuFrame);
    key.QueryValue("EthernetSockTO",    &m_SockTO);           // Added 2015-01-30 by DL for Ethernet Socket Timeout
    key.QueryValue("EthernetPort",      &m_localPort);
    key.QueryValue("EthernetPort2",     &m_otherPort);
@@ -1588,6 +1590,7 @@ DWORD animationType;
    key.SetValue("EthernetServers", m_numServers);
    key.SetValue("LingerClose", m_linger);
    key.SetValue("EthernetSockTO", m_SockTO);           // Added 2015-01-30 by DL for Ethernet Socket Timeout
+   key.SetValue("RtuFrame", m_rtuFrame);
 
    key.SetValue("EthernetPort", m_localPort);
    key.SetValue("EthernetPort2", m_otherPort);
@@ -1832,7 +1835,7 @@ CString csNewTitle, portName;
                                          m_modifyThenRespond,
                                          m_disableWrites,
                                          m_PDUSize,
-										           m_useBCC,
+	                                     m_useBCC,
                                          m_ABMasterSourceStation,
                                          m_ABMasterDestStation,
                                          m_ABMasterNumFiles,
@@ -1865,13 +1868,14 @@ CString csNewTitle, portName;
       case PROTOCOL_SELMODETH:
 		 m_PDUSize = 2048;                  // Added as default 2017-01-02 by DL
          m_pServerSockArray = new CServerSocketArray();
-         m_pServerSockArray->AddServers(m_numServers, 
-                                        m_localPort, 
-                                        m_responseDelay, 
-                                        m_linger, 
+         m_pServerSockArray->AddServers(m_numServers,
+                                        m_localPort,
+                                        m_responseDelay,
+                                        m_linger,
                                         m_MOSCADchecks,
                                         m_modifyThenRespond,
                                         m_disableWrites,
+                                        m_rtuFrame,
                                         m_PDUSize);
          //update title bar
          csTitle.LoadString(IDS_TITLE);
@@ -2804,6 +2808,7 @@ int retCode;
          dlg.m_numServers = m_numServers;
          dlg.m_autoLoad    = m_autoLoad;		// Added 2015-07-19 by DL to show these on Eth screen
          dlg.m_startAsOff  = m_startAsOff;		// Added 2015-07-19 by DL to show these on Eth screen
+         dlg.m_rtuFrame    = m_rtuFrame;
          // fill in IP addresses for the connected host
          GetConnectionIPAddresses(dlg.m_localIPStr, dlg.m_remoteIPStr);
 
@@ -2817,6 +2822,7 @@ int retCode;
             m_numServers      = dlg.m_numServers;
 			m_autoLoad        = dlg.m_autoLoad;		// Added 2015-Nov-19 by DL to show these on Eth screen
 			m_startAsOff      = dlg.m_startAsOff;	// Added 2015-Nov-19 by DL to show these on Eth screen
+            m_rtuFrame        = dlg.m_rtuFrame;
          }
       }
 

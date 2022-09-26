@@ -58,11 +58,12 @@ CMODEthCommsProcessor::CMODEthCommsProcessor(int responseDelay,
                                              BOOL MOSCADchecks,
                                              BOOL modifyThenRespond,
                                              BOOL disableWrites,
+                                             BOOL rtuFrame,
                                              LONG PDUSize,
                                              WORD portNum) : CDDKSrvSocket(portNum)
 {
-CString description;
- m_protocolName = "MODBUS Eth.";
+   CString description;
+   m_protocolName = "MODBUS Eth.";
 
    InitializeCriticalSection(&stateCS);
    description.Format("Starting comms emulation : %s", "MODBUS TCP/IP [host]");
@@ -71,6 +72,7 @@ CString description;
 
    m_responseDelay = 0;
    m_linger = FALSE;
+   m_rtuFrame = rtuFrame;
 
    m_responseDelay = responseDelay;
    SetPDUSize(PDUSize);
@@ -85,12 +87,14 @@ CMODEthCommsProcessor::CMODEthCommsProcessor(int responseDelay,
                                              BOOL  MOSCADchecks,
                                              BOOL modifyThenRespond,
                                              BOOL disableWrites,
+                                             BOOL rtuFrame,
                                              LONG PDUSize,
                                              SOCKET * pServerSocket) : CDDKSrvSocket(0, 0, pServerSocket)
 {
    InitializeCriticalSection(&stateCS);
    m_responseDelay = 0;
    m_linger = FALSE;
+   m_rtuFrame = rtuFrame;
 
    m_responseDelay = responseDelay;
    SetPDUSize(PDUSize);
@@ -219,7 +223,7 @@ WORD WriteStartAddress;
    // parse the telegram
 
    // 1. break up the telegram
-   CMODMessage::SetEthernetFrames();
+   CMODMessage::SetEthernetFrames(m_rtuFrame ? FALSE : TRUE);
    CMODMessage  modMsg(telegramBuffer, numBytes);
 
    //check the station #
@@ -864,19 +868,29 @@ WORD WriteStartAddress;
       pDataPortion = responseModMsg.dataPtr; // Get offset to fill in data
    }
    
-   // THERE IS no CRC, so do not call BuildMessageEnd
    responseModMsg.totalLen = (WORD)((LONG)pDataPortion-(LONG)responseModMsg.buffer);
 
-   // insert the frame info
-   //responseModMsg
-   if (responseModMsg.totalLen > 410)         // Added on 2015-01-11 by DL because one failure was 13412
-      return (FALSE);                         // This was the Bit Write to 65536 that caused a crash in mod_RSsim
-   memmove(&responseModMsg.buffer[ETH_PREAMBLE_LENGTH], responseModMsg.buffer, responseModMsg.totalLen);
-   responseLen = ETH_PREAMBLE_LENGTH + responseModMsg.totalLen; //SwapBytes(*(WORD*)(responseModMsg.preambleLenPtr)) + 6; //hdr;
-   memset(responseModMsg.buffer, 0 , ETH_PREAMBLE_LENGTH);
-   WORD tn = responseModMsg.GetEthernetTransNum();
-   *((WORD*)&responseModMsg.buffer[0]) = tn;
-   *((WORD*)&responseModMsg.buffer[4]) = SwapBytes(responseModMsg.totalLen);
+   if (m_rtuFrame)
+   {
+       // append CRC
+       responseModMsg.totalLen += MODBUS_CRC_LEN;
+       responseModMsg.BuildMessageEnd();
+       responseLen = responseModMsg.totalLen;
+   }
+   else
+   {
+       // insert the frame info
+       //responseModMsg
+       if (responseModMsg.totalLen > 410)         // Added on 2015-01-11 by DL because one failure was 13412
+           return (FALSE);                         // This was the Bit Write to 65536 that caused a crash in mod_RSsim
+       memmove(&responseModMsg.buffer[ETH_PREAMBLE_LENGTH], responseModMsg.buffer, responseModMsg.totalLen);
+       responseLen = ETH_PREAMBLE_LENGTH + responseModMsg.totalLen; //SwapBytes(*(WORD*)(responseModMsg.preambleLenPtr)) + 6; //hdr;
+       memset(responseModMsg.buffer, 0, ETH_PREAMBLE_LENGTH);
+       WORD tn = responseModMsg.GetEthernetTransNum();
+       *((WORD*)&responseModMsg.buffer[0]) = tn;
+       *((WORD*)&responseModMsg.buffer[4]) = SwapBytes(responseModMsg.totalLen);
+   }
+
    // 6. send it back
    m_debuggerStep = 102;
    sprintf(debugStr, "Send %d bytes\n", responseLen);
@@ -907,14 +921,15 @@ WORD WriteStartAddress;
       // inc counter
       pGlobalDialog->PacketsSentInc();
    }
-
+   
    // If there are still more bytes in the data we read, process them recursively
-   if ((WORD)(modMsg.m_frameLength + 6) < numBytes)
+   DWORD totalProcessed = m_rtuFrame ? modMsg.overalLen + MODBUS_CRC_LEN  : modMsg.m_frameLength + 6;
+   if (totalProcessed < numBytes)
    {
       SockDataMessage("## Processing queued data bytes...");
-      SockDataDebugger(&telegramBuffer[modMsg.m_frameLength + 6], numBytes - (modMsg.m_frameLength + 6), dataDebugOther);
+      SockDataDebugger(&telegramBuffer[totalProcessed], numBytes - totalProcessed, dataDebugOther);
       // recursive call using the data from our own stack-space
-      ProcessData(openSocket, &telegramBuffer[modMsg.m_frameLength + 6], numBytes - (modMsg.m_frameLength + 6));
+      ProcessData(openSocket, &telegramBuffer[totalProcessed], numBytes - totalProcessed);
    }
    return (TRUE);
 }

@@ -24,12 +24,14 @@ public:
                          BOOL  MOSCADchecks,
                          BOOL modifyThenRespond,
                          BOOL disableWrites,
+                         BOOL rtuFrame,
                          LONG PDUSize,
                          WORD portNum);
 	CMODEthCommsProcessor(int responseDelay,
                          BOOL  MOSCADchecks,
                          BOOL modifyThenRespond,
                          BOOL disableWrites,
+                         BOOL rtuFrame,
                          LONG PDUSize,
                          SOCKET * pServerSocket);
 	virtual ~CMODEthCommsProcessor();
@@ -58,6 +60,7 @@ public:
 // data members   
    UINT m_responseDelay;
    BOOL m_linger;
+   BOOL m_rtuFrame;
    //BOOL m_useEthernetStationID;
    //DWORD m_stationID;
    // noise/error sim

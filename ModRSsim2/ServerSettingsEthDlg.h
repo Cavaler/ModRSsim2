@@ -29,6 +29,7 @@ public:
 	DWORD	m_other;
 	BOOL	m_autoLoad;		// Added 2015-07-19 by DL to show these on Eth screen
 	BOOL	m_startAsOff;	// Added 2015-07-19 by DL to show these on Eth screen
+	BOOL    m_rtuFrame;
 	//}}AFX_DATA
 
 

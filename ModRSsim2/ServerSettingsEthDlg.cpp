@@ -49,6 +49,7 @@ CServerSettingsEthDlg::CServerSettingsEthDlg(CWnd* pParent /*=NULL*/)
 	m_other = 0;
 	m_autoLoad = FALSE;		// Added 2015-07-19 by DL to show these on Eth screen
 	m_startAsOff = FALSE;	// Added 2015-07-19 by DL to show these on Eth screen
+	m_rtuFrame = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -72,6 +73,7 @@ void CServerSettingsEthDlg::DoDataExchange(CDataExchange* pDX)
 	DDV_MinMaxDWord(pDX, m_other, 0, 65535);
 	DDX_Check(pDX, IDC_AUTOLOAD, m_autoLoad);	// 2015-07-19 by DL to Show and Set Autoload Status
 	DDX_Check(pDX, IDC_STARTOFF, m_startAsOff);	// 2015-07-19 by DL to Show and Set Start All Stations Off
+	DDX_Check(pDX, IDC_RTUFRAME, m_rtuFrame);
 	//}}AFX_DATA_MAP
 }
 

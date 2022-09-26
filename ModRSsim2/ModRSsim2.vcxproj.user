@@ -9,4 +9,7 @@
     </LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup>
+    <RESOURCE_FILE>mod_RSsim.rc</RESOURCE_FILE>
+  </PropertyGroup>
 </Project>

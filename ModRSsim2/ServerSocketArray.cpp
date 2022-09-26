@@ -92,6 +92,7 @@ LONG CServerSocketArray::AddServers(int numServers,
                                     BOOL MOSCADchecks,
                                     BOOL modifyThenRespond,
                                     BOOL disableWrites,
+                                    BOOL rtuFrame,
                                     DWORD PDUSize)
 {
 int index;
@@ -112,6 +113,7 @@ CMODEthCommsProcessor *pServer;
                                                                        MOSCADchecks,
                                                                        modifyThenRespond,
                                                                        disableWrites,
+                                                                       rtuFrame,
                                                                        PDUSize,
                                                                        port);
 
@@ -126,6 +128,7 @@ CMODEthCommsProcessor *pServer;
                                                                     MOSCADchecks,
                                                                     modifyThenRespond,
                                                                     disableWrites,
+                                                                    rtuFrame,
                                                                     PDUSize,
                                                                     &pServer1->m_socket);
          //pServer->m_responseDelay = responseDelay;

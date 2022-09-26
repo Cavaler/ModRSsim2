@@ -220,6 +220,7 @@ public:
    DWORD m_autoLoad;
    DWORD m_startAsOff;
    DWORD m_longTimeouts;       // Added by DL on 2016-10-15
+   DWORD m_rtuFrame;
    //
    DWORD m_ABMasterSourceStation;     // SCC station ID
    DWORD m_ABMasterDestStation;       // destination (SCADA) station ID

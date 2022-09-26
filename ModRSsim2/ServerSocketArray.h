@@ -23,6 +23,7 @@ public:
                    BOOL MOSCADchecks,
                    BOOL modifyThenRespond,
                    BOOL disableWrites,
+                   BOOL rtuFrame,
                    DWORD PDUSize);
    LONG NumberConnected(); // # servers that are still connected
    SOCKET FirstConnected(); // # servers that are still connected
