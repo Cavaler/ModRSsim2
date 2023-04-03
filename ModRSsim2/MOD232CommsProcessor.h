@@ -177,6 +177,8 @@ public:
    static BOOL SetEthernetFrames(BOOL ethernetFrames = TRUE);
 
    WORD GetEthernetTransNum() { return(m_EthernetTransNum);}
+   WORD GetHeaderLength() { return frameEthernet ? 6 : 0; }
+
 private:
    BOOL crcCheckedOK;
    static BOOL m_protocolEthernet;

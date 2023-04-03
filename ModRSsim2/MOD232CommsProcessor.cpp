@@ -166,7 +166,8 @@ static BYTE EthernetHeader[4]= {
 		 overalLen = UnPackField(&pTelePtr, 2);   // write length in words
 		 overalLen = UnPackField(&pTelePtr, 1);   // write byte count
 //         overalLen = byteCount;
-         overalLen+=3;  // skip the 3 bytes for the req. size (byte) and length/quantity word
+         overalLen += 7;  // skip the 7 bytes for the req. size (byte) and length/quantity words
+         break;
 	  default   : //All other commands not supported
          //ASSERT (0);
          overalLen = 0;

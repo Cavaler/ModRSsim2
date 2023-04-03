@@ -704,15 +704,16 @@ WORD WriteStartAddress;
                      SockDataMessage(deb);
 					 if (m_CommsDecodeShow) CRS232Port::WriteToFile(deb);
 
-                     ReadStartHigh = telegramBuffer[8];
-                     ReadStartLow = telegramBuffer[9];
-                     ReadLengthHigh = telegramBuffer[10];
-                     ReadLengthLow = telegramBuffer[11];
-                     WriteStartHigh = telegramBuffer[12];
-                     WriteStartLow = telegramBuffer[13];
-					 WriteLengthHigh = telegramBuffer[14];
-					 WriteLengthLow = telegramBuffer[15];
-                     WriteDataByteCount = telegramBuffer[16];
+                     WORD header = modMsg.GetHeaderLength();
+                     ReadStartHigh = telegramBuffer[2 + header];
+                     ReadStartLow = telegramBuffer[3 + header];
+                     ReadLengthHigh = telegramBuffer[4 + header];
+                     ReadLengthLow = telegramBuffer[5 + header];
+                     WriteStartHigh = telegramBuffer[6 + header];
+                     WriteStartLow = telegramBuffer[7 + header];
+					 WriteLengthHigh = telegramBuffer[8 + header];
+					 WriteLengthLow = telegramBuffer[9 + header];
+                     WriteDataByteCount = telegramBuffer[10 + header];
 
                      ReadStartAddress = ReadStartHigh * 256 + ReadStartLow;
 					 ReadDataWordCount = ReadLengthHigh * 256 + ReadLengthLow;
