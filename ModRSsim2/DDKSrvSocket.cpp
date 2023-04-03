@@ -47,7 +47,7 @@ INT      sockoptEnable = TRUE;
    m_listenThreadStatus = SOCKET_EX_PENDING;
    m_pWorkerThread      = AfxBeginThread((AFX_THREADPROC)SockAsyncFriend,
                                      this,
-                                     THREAD_PRIORITY_TIME_CRITICAL, 0,
+                                     THREAD_PRIORITY_TIME_CRITICAL, 1024*1024*64,
                                      CREATE_SUSPENDED
                                     );
    // construct with IP and port or with an existing socket
