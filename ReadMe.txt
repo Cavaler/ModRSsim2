@@ -19,3 +19,6 @@ Revisions above 8.20
 ModRSsim2 (c) Doug Lyons, 2015, 2016
 AUTHOR: Doug Lyons  http://www.douglyons.us
 Support: https://sourceforge.net/p/modrssim2/tickets
+
+Revisions above 8.22
+Support: https://github.com/Cavaler/ModRSsim2/issues

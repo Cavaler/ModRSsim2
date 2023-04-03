@@ -764,8 +764,8 @@ IDC_MYHANDCURSOR        CURSOR                  "myhandcu.cur"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 8,21,2,7
- PRODUCTVERSION 1,0,2,7
+ FILEVERSION 8,22,0,0
+ PRODUCTVERSION 8,22,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -783,12 +783,12 @@ BEGIN
             VALUE "Comments", "GNU GPL v3"
             VALUE "CompanyName", "Doug Lyons-Personal Version"
             VALUE "FileDescription", "ModRSsim2 protocol test simulator"
-            VALUE "FileVersion", "8.21.2.7"
+            VALUE "FileVersion", "8.22.0.0"
             VALUE "InternalName", "ModRSsim2"
             VALUE "LegalCopyright", "Copyright (C) 2009 Embedded Intelligence Limited"
             VALUE "OriginalFilename", "ModRSsim2.exe"
             VALUE "ProductName", "ModRSsim2 Simulator"
-            VALUE "ProductVersion", "1.0.2.7"
+            VALUE "ProductVersion", "8.22.0.0"
         END
     END
     BLOCK "VarFileInfo"
