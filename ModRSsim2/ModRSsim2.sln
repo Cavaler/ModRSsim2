@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ModRSsim2", "ModRSsim2.vcxproj", "{7690E3EF-B981-43F5-A13D-A7C70A56C000}"
+	ProjectSection(ProjectDependencies) = postProject
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490} = {492645C1-2BFF-4C83-8C77-6F82D91CC490}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MYLIB", "..\mylib\MYLIB.vcxproj", "{492645C1-2BFF-4C83-8C77-6F82D91CC490}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Debug|Win32.Build.0 = Debug|Win32
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Release|Win32.ActiveCfg = Release|Win32
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Release|Win32.Build.0 = Release|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Debug|Win32.ActiveCfg = Debug|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Debug|Win32.Build.0 = Debug|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Release|Win32.ActiveCfg = Release|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
