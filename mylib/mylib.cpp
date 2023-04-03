@@ -426,7 +426,7 @@ CHAR temp[256];
    cBox->ResetContent();
    for (count = 0; count < tableLen; count++)
    {
-      sprintf_s(temp, sizeof(temp), "%ld",(DWORD *)table[count]);
+      sprintf_s(temp, sizeof(temp), "%ld", table[count]);
       cBox->AddString(temp);  //strTablePtr[count]);
       cBox->SetItemData(count,  *(table + count));
       if (*(table + count) == currentsetting)
