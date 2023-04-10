@@ -73,8 +73,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="myhandcu.cur" />
-    <None Include="Readme.txt" />
-  </ItemGroup>
 </Project>

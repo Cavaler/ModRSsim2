@@ -755,7 +755,7 @@ END
 // Cursor
 //
 
-IDC_MYHANDCURSOR        CURSOR                  "myhandcu.cur"
+IDC_MYHANDCURSOR        CURSOR                  "res\\myhandcu.cur"
 
 
 /////////////////////////////////////////////////////////////////////////////

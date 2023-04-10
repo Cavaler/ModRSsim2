@@ -1,3 +1,5 @@
 Debug
 Release
 .vs
+*.user
+*.aps

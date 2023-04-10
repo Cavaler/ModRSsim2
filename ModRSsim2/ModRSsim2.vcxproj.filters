@@ -358,8 +358,6 @@
     <None Include="help\images\toolbar.gif">
       <Filter>Resource Files\Helpsystem</Filter>
     </None>
-    <None Include="license.txt" />
-    <None Include="ReadMe.txt" />
     <None Include="help\images\regsta2.GIF">
       <Filter>Resource Files</Filter>
     </None>
@@ -378,7 +376,6 @@
     <None Include="res\bmp00006.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="mod_RSsim.rc">
