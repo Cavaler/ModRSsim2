@@ -85,7 +85,7 @@ FONT 10, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,248,7,50,14,WS_GROUP
     LTEXT           "Project Website:",IDC_STATIC,13,136,66,8
-    LTEXT           "www.sourceforge.net/projects/modrssim2",IDC_WWWLINK,66,136,140,8
+    LTEXT           "https://github.com/Cavaler/ModRSsim2",IDC_WWWLINK,66,136,140,8
     LTEXT           "Registration info",IDC_REGISTRATIONINFO,13,155,213,8
     LTEXT           "",IDC_SINKSTAT2,7,133,232,37,SS_SUNKEN
     PUSHBUTTON      "Start-up\nSplash",IDC_SPLASH,248,146,50,24,BS_CENTER | BS_MULTILINE
@@ -775,8 +775,8 @@ IDC_MYHANDCURSOR        CURSOR                  "res\\myhandcu.cur"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 8,22,0,0
- PRODUCTVERSION 8,22,0,0
+ FILEVERSION 8,22,0,1
+ PRODUCTVERSION 8,22,0,1
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -794,12 +794,12 @@ BEGIN
             VALUE "Comments", "GNU GPL v3"
             VALUE "CompanyName", "Doug Lyons-Personal Version"
             VALUE "FileDescription", "ModRSsim2 protocol test simulator"
-            VALUE "FileVersion", "8.22.0.0"
+            VALUE "FileVersion", "8.22.0.1"
             VALUE "InternalName", "ModRSsim2"
             VALUE "LegalCopyright", "Copyright (C) 2009 Embedded Intelligence Limited"
             VALUE "OriginalFilename", "ModRSsim2.exe"
             VALUE "ProductName", "ModRSsim2 Simulator"
-            VALUE "ProductVersion", "8.22.0.0"
+            VALUE "ProductVersion", "8.22.0.1"
         END
     END
     BLOCK "VarFileInfo"
@@ -928,7 +928,7 @@ END
 STRINGTABLE
 BEGIN
     IDC_NOISE               "Noise settings..."
-    IDS_SFWEBURL            "http://www.sourceforge.net/projects/modrssim2/"
+    IDS_SFWEBURL            "https://github.com/Cavaler/ModRSsim2"
     IDC_EMULATION           "Adv. PLC Emul. settings"
 END
 

@@ -1,4 +1,8 @@
-Version 8.22.0.0    03/04/23
+Version 8.22.0.1    04/10/23
+  Fixed #24 "Malformed Modbus message for Function Code = x17"
+  Added support for script engines other than VBScript
+
+Version 8.22.0.0    04/03/23
   Built with Visual Studio 2019
   Support for RTU ver TCP frame format
   Increased processing stack size to avoid crash on multiple TCP requests at once
