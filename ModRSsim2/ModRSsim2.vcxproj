@@ -367,6 +367,7 @@
     <None Include="res\mod_RSsimul.ico" />
     <None Include="res\multisla.bmp" />
     <None Include="myhandcu.cur" />
+    <None Include="res\myhandcu.cur" />
     <None Include="res\toolbar1.bmp" />
     <None Include="help\images\advmbus.gif" />
     <None Include="help\images\anim.gif" />

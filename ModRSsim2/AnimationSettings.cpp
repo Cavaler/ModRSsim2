@@ -62,6 +62,7 @@ void CAnimationSettingsDlg::DoDataExchange(CDataExchange* pDX)
 	DDV_MinMaxLong(pDX, m_refreshes, 1, 30);
 	DDX_Text(pDX, IDC_ANIMATION_ON, m_animationPeriod);
 	DDV_MinMaxDWord(pDX, m_animationPeriod, 1, 20);
+	DDX_Text(pDX, IDC_SCRIPTENGINE, m_scriptEngine);
 	DDX_Text(pDX, IDC_INPUT_HTMLNAME, m_inputHtmlFilename);
 	DDX_Text(pDX, IDC_OUTPUT_HTMLNAME, m_outputHtmlFilename);
 	DDX_Check(pDX, IDC_ENABLEHTMLGUI, m_enableHTMLGUI);
@@ -99,7 +100,7 @@ BOOL CAnimationSettingsDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	UpdateData(FALSE);
-   SetDlgItemText(IDC_SCRIPTNAME, m_scriptFile);
+    SetDlgItemText(IDC_SCRIPTNAME, m_scriptFile);
 	// TODO: Add extra initialization here
 	if (!m_animationON)
    {

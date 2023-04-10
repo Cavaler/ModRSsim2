@@ -37,6 +37,7 @@ public:
    BOOL  m_animationBYTE;
    BOOL  m_animationWORD;
    CString m_scriptFile;
+   CString m_scriptEngine;
 
    BOOL m_firstPaint;
 

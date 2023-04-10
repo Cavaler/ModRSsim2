@@ -193,7 +193,7 @@ CMOD_simDlg::CMOD_simDlg(CWnd* pParent /*=NULL*/)
    //m_pNoiseSettings->SetErrorTypes(FALSE,0);   // init noise obj, copy it each time
 
    EnableAutomation();
-   m_scriptEngineInitilized = FALSE;
+   m_scriptEngineInitialized = FALSE;
    m_reloadAnimationScript = TRUE;
    m_lastRuntime = -1;
 
@@ -246,6 +246,7 @@ CMOD_simDlg::CMOD_simDlg(CWnd* pParent /*=NULL*/)
    m_busyCreatingServers = FALSE;
    m_animationPeriod = 5; //
    m_animationScriptFile = L"";
+   m_animationScriptEngine = L"VBScript";
 
    m_enableHTMLGUI = FALSE;
    m_HTMLUpdateRate = 5;
@@ -1516,6 +1517,7 @@ DWORD animationType;
    if (m_animationBYTE || m_animationWORD || m_plantAnimation)
       m_animationON = TRUE;
    key.QueryValue("AnimationScript", m_animationScriptFile);
+   key.QueryValue("AnimationEngine", m_animationScriptEngine);
 
    //Vinay
    key.QueryValue("CSVImportFolder", m_importFolder);
@@ -1606,6 +1608,7 @@ DWORD animationType;
    }
    key.SetValue("AnimationType", animationType);
    key.SetValue("AnimationScript", m_animationScriptFile);
+   key.SetValue("AnimationEngine", m_animationScriptEngine);
 
    key.SetValue("RegistersPerStation", m_numSeperate);
    key.SetValue("RegistersSeperated", m_seperateRegisters);
@@ -2590,12 +2593,14 @@ void CMOD_simDlg::DoAnimations()
 
          if (m_animationScriptFile.GetLength())
          {
-            if (!m_scriptEngineInitilized)
+            if (!m_scriptEngineInitialized)
             {
                // check error, and do not bother loading text
-             	initOK = m_ScriptProxy.CreateEngine( L"VBScript" );
+                BSTR bstrEngine = m_animationScriptEngine.AllocSysString();
+             	initOK = m_ScriptProxy.CreateEngine( bstrEngine );
+                SysFreeString(bstrEngine);
 
-               m_scriptEngineInitilized = TRUE; // do not try init things twice. It is not use.
+               m_scriptEngineInitialized = TRUE; // do not try init things twice. It is not use.
             }
 
             // try to run the script
@@ -3282,6 +3287,7 @@ void CMOD_simDlg::OnSimulate()
    dlg.m_refreshes      = m_animationRefreshes;
    dlg.m_animationPeriod = m_animationPeriod;
    dlg.m_scriptFile      = m_animationScriptFile;
+   dlg.m_scriptEngine    = m_animationScriptEngine;
 
    // HTML GUI params
    dlg.m_enableHTMLGUI      = m_enableHTMLGUI;
@@ -3307,7 +3313,14 @@ void CMOD_simDlg::OnSimulate()
       m_animationWORD      = dlg.m_animationWORD;
       m_animationRefreshes = dlg.m_refreshes;
       m_animationPeriod    = dlg.m_animationPeriod;
-      m_animationScriptFile = dlg.m_scriptFile;
+      m_animationScriptFile   = dlg.m_scriptFile;
+
+      if (dlg.m_scriptEngine != m_animationScriptEngine)
+      {
+         m_animationScriptEngine = dlg.m_scriptEngine;
+         m_scriptEngineInitialized = FALSE;
+      }
+
       // HTML GUI params
       m_enableHTMLGUI      = dlg.m_enableHTMLGUI     ; 
       m_HTMLUpdateRate     = dlg.m_HtmlUpdateRate    ; 

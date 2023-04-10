@@ -376,6 +376,12 @@
     <None Include="res\bmp00006.bmp">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\Changelog.txt" />
+    <None Include="..\license.txt" />
+    <None Include="..\ReadMe.txt" />
+    <None Include="res\myhandcu.cur">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="mod_RSsim.rc">

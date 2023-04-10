@@ -327,13 +327,14 @@ protected:
    LONG  m_animationRefreshes;      // data SIM
    DWORD m_animationPeriod;
    CString m_animationScriptFile;
+   CString m_animationScriptEngine;
    // HTML GUI params
    DWORD   m_enableHTMLGUI;     
    DWORD   m_HTMLUpdateRate;    
    CString m_outputHTMLFilename;
    CString m_inputHTMLFilename; 
    
-   BOOL m_scriptEngineInitilized;
+   BOOL m_scriptEngineInitialized;
 	CMyHostProxy	m_ScriptProxy;
    CString m_animationScriptText;
    BOOL    m_reloadAnimationScript;
